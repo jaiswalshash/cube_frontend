@@ -1,70 +1,92 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Catalyst Cube
 
-## Available Scripts
+## Introduction
 
-In the project directory, you can run:
+Welcome to [Catalyst](https://cube-frontend-three.vercel.app/), a full-stack todo application designed to streamline your task management experience. Catalyst is built on the MERN (MongoDB, Express.js, React, Node.js) stack, providing a robust and scalable solution for managing your todos efficiently.
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### MERN Stack
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+-   **MongoDB**: A NoSQL database for storing and managing todo data.
+-   **Express.js**: A web application framework for building robust APIs.
+-   **React**: A JavaScript library for building user interfaces.
+-   **Node.js**: A runtime environment for executing server-side JavaScript code.
 
-### `npm test`
+### Libraries Used
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-   **Ant Design (antd)**: A React UI library that provides a set of high-quality components and layouts for building a modern user interface.
+-   **React Icons**: A library providing popular icon packs as React components.
+-   **JSON Web Token (JWT)**: Used for secure authentication.
 
-### `npm run build`
+## Why MERN?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The MERN stack was chosen for Catalyst due to its seamless integration of technologies, allowing for efficient development and maintenance. MongoDB's flexibility, Express.js's simplicity, React's component-based architecture, and Node.js's event-driven nature combine to create a powerful and scalable application.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## How to Use
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Catalyst is split into two repositories: one for the [frontend](https://github.com/jaiswalshash/cube_frontend) and another for the [backend](https://github.com/jaiswalshash/cube_backend). This separation is adopted to address hosting issues and ensure a smooth development and deployment process.
 
-### `npm run eject`
+### Backend Setup
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1.  Clone the backend repository:
+    
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    
+    `git clone https://github.com/jaiswalshash/cube_backend` 
+    
+2.  Navigate to the backend folder:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    
+    `cd backend` 
+    
+3.  Install dependencies:
+    
+    
+    `npm install` 
+    
+4.  Install nodemon globally:
+        
+    `npm i -g nodemon` 
+    
+5.  Create a `.env` file in the backend folder and add the following environment variable:
+    
+    envCopy code
+    
+    `MONGO_URI= 'mongodb+srv://admin:IXHZfglw3oyBJzTl@mycluster.w7djj.mongodb.net/todos?retryWrites=true&w=majority'
+PASSWORD=abc
+SECRET=123
+TOKEN_KEY=todo@cube` 
+    
+6.  Start the backend server:
+   
+    
+    `npm start` 
+    
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Frontend Setup
 
-## Learn More
+1.  Clone the frontend repository:
+   
+    
+    `git clone https://github.com/jaiswalshash/cube_frontend` 
+    
+2.  Navigate to the frontend folder:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    
+    `cd frontend` 
+    
+3.  Install dependencies:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    
+    `npm install` 
+    
+4.  Start the frontend server:
+    
 
-### Code Splitting
+    
+    `npm start` 
+    
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Now you have Catalyst up and running locally! Visit `http://localhost:3000` in your web browser to start using the application.
