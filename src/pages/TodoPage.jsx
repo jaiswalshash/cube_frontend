@@ -140,7 +140,7 @@ const TodoPage = () => {
       )}
       <h1 className="w-full mb-5 text-2xl lg:text-4xl">
         <span className="text-gray-500 dark:text-gray-400">Welcome,</span>{" "}
-        <span className="text-purple-500">{temp.name} </span>
+        <span className="text-purple-500">{temp.name}! </span>
       </h1>
       {data && <Taskbox data={data} />}
       <div
@@ -233,12 +233,12 @@ const TodoPage = () => {
         </div>
       </div>
       <div
-        className="mt-10 h-[15rem] lg:h-[20rem] text-sm lg:text-base bg-white p-2 lg:p-6 rounded-lg shadow-lg text-black
+        className="mt-10 h-[16rem] lg:h-[20rem] text-sm lg:text-base bg-white p-2 lg:p-6 rounded-lg shadow-lg text-black
        dark:text-white bg-opacity-10 backdrop-filter backdrop-blur-18 border border-opacity-20 border-none"
       >
         <div
           style={{ gridTemplateColumns: "0.2fr 1fr 0.2fr 0.2fr 0.2fr" }}
-          className="w-full grid p-1 lg:p-2 font-bold grid-cols-0.2fr 1fr 0.2fr 0.2fr"
+          className="w-full gap-4 grid p-1 lg:p-2 font-bold grid-cols-0.2fr 1fr 0.2fr 0.2fr"
         >
           <div>Status</div>
           <div>Task</div>
@@ -253,7 +253,7 @@ const TodoPage = () => {
                 <div
                   key={item._id}
                   style={{ gridTemplateColumns: "0.2fr 1fr 0.2fr 0.2fr 0.2fr" }}
-                  className="grid w-full p-2"
+                  className="grid gap-4 w-full p-2"
                 >
                   <div>
                     {/* Use a checkbox and apply the purple color when completed */}

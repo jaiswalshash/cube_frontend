@@ -23,7 +23,6 @@ function Homepage() {
           <p className="text-xl font-montserrat text-yellow-400 ">
             Dive into a World Tailored Just for You
           </p>
-          {/* max-sm:text-[72px] max-sm:leading-[82] */}
           <h1
             id="hero-title"
             className="mt-6 font-palanquin lg:text-7xl 
@@ -34,19 +33,19 @@ function Homepage() {
             z-5 relative pr-10
           "
             >
-              Discover Your Literary Match
+              Enhanace Your Productivity
             </span>
             <br />
             <span className="text-purple-400 dark:text-purple-300 inline-block mt-4">
-              HARMONY
+              CATALYST
             </span>{" "}
-            PAGES
+            
           </h1>
           <p
             className="font-montserrat text-gray-400 dark:text-gray-300 text-lg leading-8 mt-6
         mb-14 sm:max-w-sm"
           >
-            Unlock the Perfect Book for Your Personality.
+            Unlock the Perfect Work Flow.
           </p>
         </div>
         {login ? <LoginPage isLogin={handleToggle} /> : <SignupPage isLogin={handleToggle} />}

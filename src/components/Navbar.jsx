@@ -2,6 +2,7 @@ import { React, useState, useEffect } from "react";
 import { FaSun, FaMoon, FaUser, FaSignOutAlt } from "react-icons/fa";
 import { isLoggedIn } from "../helper/auth";
 import { useNavigate } from "react-router-dom";
+import todo from "../assets/todo.png"
 
 import "./navbar.css";
 
@@ -37,7 +38,7 @@ function Navbar() {
      backdrop-blur-18 border border-opacity-20 border-white top-0"
     >
       <div className="flex gap-2 font-bold dark:text-white text-gray-700">
-        {/* <img src={lit} alt="" width={25} height={15} /> */}
+        <img src={todo} alt="" width={25} height={15} />
         <span>Catalyst</span>{" "}
       </div>
 
@@ -46,7 +47,7 @@ function Navbar() {
         className="flex items-center justify-between gap-5"
       >
         <div>
-          {auth ? <FaSignOutAlt onClick={ () => handleLogout()} className="text-2xl dark:text-white"/> : <FaUser className="text-2xl dark:text-white"/>
+          {auth ? <FaSignOutAlt onClick={ () => handleLogout()} className="text-2xl dark:text-white cursor-pointer"/> : <FaUser className="text-2xl dark:text-white"/>
 
           }
         </div>
