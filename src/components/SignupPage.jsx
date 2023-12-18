@@ -45,7 +45,6 @@ const SignUp = ({ isLogin }) => {
     const res = await signup(data);
     
     if (res) {
-      console.log(res);
       loginUser(res);
       navigate("/app");
     }

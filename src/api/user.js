@@ -13,7 +13,7 @@ const signup = async (user) => {
     });
     return await res.json();
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -30,7 +30,7 @@ const login = async (user) => {
     });
     return await res.json();
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 

@@ -20,10 +20,6 @@ function ModalComponent({ open,  data, toggle, addNew, updatedData }) {
   }, [])
 
   const handleOk = () => {
-    // Perform any action you need with the task, description, and priority
-    console.log("Task:", task);
-    console.log("Description:", description);
-    console.log("Priority:", priority);
     const newData = {
       text:task, description, priority, completed:status
     }
@@ -43,7 +39,6 @@ function ModalComponent({ open,  data, toggle, addNew, updatedData }) {
     setDescription(null);
     setPriority("medium");
     toggle();
-    console.log("Clicked cancel button");
   };
 
   return (

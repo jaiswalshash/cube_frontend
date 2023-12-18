@@ -12,7 +12,7 @@ import "./style.css";
 const TodoPage = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
   const [addNew, setAddNew] = useState(false);
   const [id, setID] = useState(null);
   const [loader, setLoader] = useState(false);
@@ -55,7 +55,6 @@ const TodoPage = () => {
   const handleDelete = async (e) => {
     setLoader(true);
     const res = await remove(e._id);
-    console.log(res);
     get();
   };
 
@@ -68,7 +67,6 @@ const TodoPage = () => {
     setLoader(true);
     const res = await create(e);
     get();
-    console.log(res);
   };
 
   const updateTask = async (e) => {
@@ -96,9 +94,8 @@ const TodoPage = () => {
   };
 
   const applyFilter = () => {
-    console.log("Selected Date Filter:", selectedDateFilter);
-    console.log("Selected Priority Filters:", selectedPriorityFilters);
-    // Add logic here to filter data based on the selected options
+    alert("Filter feature is not yet implemented!")
+
   };
 
   function sortByTimestamp() {
@@ -109,7 +106,6 @@ const TodoPage = () => {
   function sortByPriority() {
     const priorities = { low: 2, medium: 1, high: 0 };
     const sortedData = data.slice().sort((a, b) => priorities[a.priority] - priorities[b.priority]);
-    console.log(sortedData);
     setData(sortedData);
   }
 
@@ -247,13 +243,13 @@ const TodoPage = () => {
           <div className="flex justify-center items-center">Delete</div>
         </div>
         <div id="task-list" className="w-full h-[85%] overflow-auto">
-          {data &&
+          {data.length !==0 &&
             data.map((item) => {
               return (
                 <div
                   key={item._id}
                   style={{ gridTemplateColumns: "0.2fr 1fr 0.2fr 0.2fr 0.2fr" }}
-                  className="grid gap-4 w-full p-2"
+                  className="grid gap-4 w-full p-2 items-center"
                 >
                   <div>
                     {/* Use a checkbox and apply the purple color when completed */}
@@ -267,7 +263,7 @@ const TodoPage = () => {
                       {item.completed ? "" : ""}
                     </div>
                   </div>
-                  <div className="whitespace-normal">{item.text}</div>
+                  <div className="whitespace-normal w-[80%] lg:w-full">{item.text}</div>
 
                   <div>{item.priority}</div>
                   <div className="flex justify-center items-center">
@@ -287,6 +283,14 @@ const TodoPage = () => {
                 </div>
               );
             })}
+
+           {
+            data.length === 0 && (
+              <div className="h-full w-full flex justify-center items-center flex-col font-bold lg:text-2xl text-lg">
+                  ADD TASKS TO VIEW!
+              </div>
+            )
+           } 
         </div>
       </div>
     </div>

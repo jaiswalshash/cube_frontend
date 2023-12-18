@@ -4,7 +4,6 @@ const getUser = () => {
   let temp = JSON.parse(localStorage.getItem("user"));
   if (temp) {
     token = temp.token;
-    console.log(token);
   }
 };
 

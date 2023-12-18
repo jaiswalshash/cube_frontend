@@ -6,12 +6,11 @@ function AddNewModal({ open, toggle, addNew, updatedData }) {
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [task, setTask] = useState('');
   const [description, setDescription] = useState(null);
-  const [priority, setPriority] = useState("medium"); // default priority is set to "low"
+  const [priority, setPriority] = useState("medium"); 
   const limit = 30;
   const handleOk = () => {
     
     if (!task) {
-      // You can handle the case where the task is not provided, e.g., show an error message
       alert("Task is mandatory. Please provide a task.");
       return;
     }
@@ -35,7 +34,6 @@ function AddNewModal({ open, toggle, addNew, updatedData }) {
     setDescription(null);
     setPriority("medium");
     toggle();
-    console.log("Clicked cancel button");
   };
 
   return (

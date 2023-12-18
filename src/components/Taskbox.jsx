@@ -2,7 +2,6 @@ import React from "react";
 
 function Taskbox({ data }) {
   // Assuming you have an array of tasks and want to display the total count
-  console.log(data);
   const totalTasks = data.length;
 
   // Calculate the completed task count
