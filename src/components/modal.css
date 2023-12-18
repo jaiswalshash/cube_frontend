@@ -1,0 +1,3 @@
+.ant-modal .ant-modal-footer .ant-btn+.ant-btn:not(.ant-dropdown-trigger) {
+    background-color: rgb(192 132 252) ;
+}
