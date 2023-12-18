@@ -95,18 +95,19 @@ const TodoPage = () => {
 
   const applyFilter = () => {
     alert("Filter feature is not yet implemented!")
-
   };
 
   function sortByTimestamp() {
     const sortedData = data.slice().sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
     setData(sortedData);
+    setSort(false);
   }
   
   function sortByPriority() {
     const priorities = { low: 2, medium: 1, high: 0 };
     const sortedData = data.slice().sort((a, b) => priorities[a.priority] - priorities[b.priority]);
     setData(sortedData);
+    setSort(false);
   }
 
   return (
