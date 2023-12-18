@@ -4,11 +4,11 @@ import "./modal.css";
 
 function ModalComponent({ open,  data, toggle, addNew, updatedData }) {
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [task, setTask] = useState(null);
+  const [task, setTask] = useState('');
   const [description, setDescription] = useState(null);
   const [priority, setPriority] = useState("medium"); 
   const [status, setStatus] = useState(false);
-
+  const limit = 30;
 
   useEffect(() => {
     if (data) {
@@ -56,11 +56,11 @@ function ModalComponent({ open,  data, toggle, addNew, updatedData }) {
         onCancel={handleCancel}
       >
         <div>
-          <label>Task:</label>
-          <Input value={task} onChange={(e) => setTask(e.target.value)} />
+          <label>Task:({task.length}/{limit})</label>
+          <Input value={task} onChange={(e) => setTask(e.target.value)} maxLength={limit} />
         </div>
         <div style={{ marginTop: "1rem" }}>
-          <label>Description:</label>
+          <label>Description:<span className="opacity-50">(Optional)</span></label>
           <Input.TextArea
             value={description}
             onChange={(e) => setDescription(e.target.value)}

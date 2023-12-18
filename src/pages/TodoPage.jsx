@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { BiFilter, BiTrash } from "react-icons/bi";
+import { BiTrash } from "react-icons/bi";
 import { GrView } from "react-icons/gr";
 import { read, create, update, remove } from "../api/todo";
 import ModalComponnet from "../components/Modal";
 import Loader from "../components/Loader";
 import AddNewModal from "../components/AddNewModal";
 import Taskbox from "../components/Taskbox";
+import { Checkbox } from "antd";
 import "./style.css";
 
 const TodoPage = () => {
@@ -16,8 +17,15 @@ const TodoPage = () => {
   const [id, setID] = useState(null);
   const [loader, setLoader] = useState(false);
   const [modalKey, setModalKey] = useState(0);
-  const [sort, setSort]  = useState(false);
-  const [filter, setFilter]  = useState(false);
+  const [sort, setSort] = useState(false);
+  const [filter, setFilter] = useState(false);
+  const [selectedDateFilter, setSelectedDateFilter] = useState(false);
+  const [selectedPriorityFilters, setSelectedPriorityFilters] = useState([
+    false,
+    false,
+    false,
+  ]);
+
   useEffect(() => {
     setLoader(true);
     get();
@@ -49,7 +57,6 @@ const TodoPage = () => {
     const res = await remove(e._id);
     console.log(res);
     get();
-    
   };
 
   const handleAddNew = () => {
@@ -70,14 +77,40 @@ const TodoPage = () => {
     get();
   };
 
-  const toggleFilter = () =>{
+  const toggleFilter = () => {
     setFilter(!filter);
     setSort(false);
-  }
+  };
 
   const toggleSort = () => {
     setSort(!sort);
     setFilter(false);
+  };
+
+  const handlePriorityCheckboxChange = (index, checked) => {
+    setSelectedPriorityFilters((prevFilters) => {
+      const updatedFilters = [...prevFilters];
+      updatedFilters[index] = checked;
+      return updatedFilters;
+    });
+  };
+
+  const applyFilter = () => {
+    console.log("Selected Date Filter:", selectedDateFilter);
+    console.log("Selected Priority Filters:", selectedPriorityFilters);
+    // Add logic here to filter data based on the selected options
+  };
+
+  function sortByTimestamp() {
+    const sortedData = data.slice().sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+    setData(sortedData);
+  }
+  
+  function sortByPriority() {
+    const priorities = { low: 2, medium: 1, high: 0 };
+    const sortedData = data.slice().sort((a, b) => priorities[a.priority] - priorities[b.priority]);
+    console.log(sortedData);
+    setData(sortedData);
   }
 
   return (
@@ -105,49 +138,91 @@ const TodoPage = () => {
           updatedData={addNew ? createTask : updateTask}
         />
       )}
-      <h1 className="w-full mb-5 text-4xl">
-        <span className="text-gray-500 dark:text-gray-400">Welcome,</span> <span className="text-purple-500">{temp.name}{" "}</span>
+      <h1 className="w-full mb-5 text-2xl lg:text-4xl">
+        <span className="text-gray-500 dark:text-gray-400">Welcome,</span>{" "}
+        <span className="text-purple-500">{temp.name} </span>
       </h1>
       {data && <Taskbox data={data} />}
       <div
-        className="w-full mt-5 flex justify-between items-center bg-white p-2 rounded-lg shadow-lg text-black
+        className="w-full mt-2 lg:mt-5 flex justify-between items-center bg-white p-1  rounded-lg shadow-lg text-black
        dark:text-white bg-opacity-40 backdrop-filter backdrop-blur-18 border border-opacity-20 border-none"
       >
-        <div className="text-xl pl-4 font-bold">Task Board</div>
-        <div className="flex gap-5 items-center ">
-          <div >
-            <span className="cursor-pointer" onClick={() => toggleSort()}>Sort</span> 
-            {
-              sort && (
-                <div className="absolute bg-black text-white p-3 mt-4">
-                    <div>By Date</div>
-                    <div>By Priority</div>
-                    
-                </div>
-              )
-            }
+        <div className="lg:text-xl text-lg pl-4 font-bold">Task Board</div>
+        <div className="flex lg:gap-5 gap-1 items-center ">
+          <div>
+            <span className="cursor-pointer" onClick={() => toggleSort()}>
+              Sort
+            </span>
+            {sort && (
+              <div className="absolute mt-4 w-[10rem] h-[5rem] bg-black p-3 rounded-lg shadow-lg text-white
+              backdrop-filter backdrop-blur-18 border border-opacity-20 border-none">
+                <div className="opacity-80 hover:opacity-100 cursor-pointer" onClick={sortByTimestamp}>By Date</div>
+                <div className="opacity-80 hover:opacity-100 cursor-pointer" onClick={sortByPriority}>By Priority</div>
+              </div>
+            )}
           </div>
           <div>|</div>
-          <div className="cursor-pointer" >
-            
-            <span className="mr-1" onClick={() => toggleFilter()}>Filter</span>
-            {
-              filter && (
-                <div className="absolute mt-4 w-[10rem] h-[12rem]  bg-black p-3 rounded-lg shadow-lg text-white
-               backdrop-filter backdrop-blur-18 border border-opacity-20 border-none">
-                    <div>
-                      <div>By Date</div>
-                      <div>HElo</div>
-                    </div>
-                    <div>
-                      <div>By Priority</div>
-                      <div>HElo</div>
-                    </div>
-                    <button className="absolute bottom-2 p-2 text-black cursor-pointer bg-yellow-300 rounded-lg shadow-lg hover:translate-y-[-2px] transition-transform duration-300">Apply filter</button>
+          <div className="cursor-pointer">
+            <span className="mr-1" onClick={() => toggleFilter()}>
+              Filter
+            </span>
+            {filter && (
+              <div
+                className="absolute mt-4 w-[10rem] h-[15rem] bg-black p-3 rounded-lg shadow-lg text-white
+          backdrop-filter backdrop-blur-18 border border-opacity-20 border-none"
+              >
+                <div>
+                  <div className="font-bold">By Date</div>
+                  <div className="text-gray-300">
+                    <Checkbox
+                      className="text-gray-300"
+                      onChange={(e) => setSelectedDateFilter(e.target.checked)}
+                      checked={selectedDateFilter}
+                    >
+                      Today
+                    </Checkbox>
+                  </div>
                 </div>
-              )
-            }
-            
+                <div>
+                  <div className="font-bold">By Priority</div>
+                  <div>
+                    <Checkbox
+                      className="text-gray-300"
+                      onChange={(e) =>
+                        handlePriorityCheckboxChange(0, e.target.checked)
+                      }
+                      checked={selectedPriorityFilters[0]}
+                    >
+                      Low
+                    </Checkbox>
+                    <Checkbox
+                      className="text-gray-300"
+                      onChange={(e) =>
+                        handlePriorityCheckboxChange(1, e.target.checked)
+                      }
+                      checked={selectedPriorityFilters[1]}
+                    >
+                      Medium
+                    </Checkbox>
+                    <Checkbox
+                      className="text-gray-300"
+                      onChange={(e) =>
+                        handlePriorityCheckboxChange(2, e.target.checked)
+                      }
+                      checked={selectedPriorityFilters[2]}
+                    >
+                      High
+                    </Checkbox>
+                  </div>
+                </div>
+                <button
+                  onClick={applyFilter}
+                  className="absolute bottom-2 p-2 text-black cursor-pointer bg-yellow-300 rounded-lg shadow-lg hover:translate-y-[-2px] transition-transform duration-300"
+                >
+                  Apply filter
+                </button>
+              </div>
+            )}
           </div>
           <div
             onClick={() => handleAddNew()}
@@ -158,17 +233,17 @@ const TodoPage = () => {
         </div>
       </div>
       <div
-        className="mt-5 h-[20rem] bg-white p-6 rounded-lg shadow-lg text-black
+        className="mt-10 h-[15rem] lg:h-[20rem] text-sm lg:text-base bg-white p-2 lg:p-6 rounded-lg shadow-lg text-black
        dark:text-white bg-opacity-10 backdrop-filter backdrop-blur-18 border border-opacity-20 border-none"
       >
         <div
           style={{ gridTemplateColumns: "0.2fr 1fr 0.2fr 0.2fr 0.2fr" }}
-          className="w-full grid p-2 font-bold grid-cols-0.2fr 1fr 0.2fr 0.2fr"
+          className="w-full grid p-1 lg:p-2 font-bold grid-cols-0.2fr 1fr 0.2fr 0.2fr"
         >
           <div>Status</div>
           <div>Task</div>
           <div>Priority</div>
-          <div className="flex justify-center items-center">View/Update</div>
+          <div className="flex justify-center items-center">View</div>
           <div className="flex justify-center items-center">Delete</div>
         </div>
         <div id="task-list" className="w-full h-[85%] overflow-auto">
@@ -182,25 +257,32 @@ const TodoPage = () => {
                 >
                   <div>
                     {/* Use a checkbox and apply the purple color when completed */}
-                    <div className={`text-${item.completed ? "pink-300" : "red"} className="flex justify-center items-center"`}>
-                      {item.completed ? "Completed" : "Pending"}
+                    <div style={{
+                      background: `${item.completed ? "green": "red"}`
+                    }}
+                      className={`bg-${
+                        item.completed ? "[rgb(0, 128, 0)]" : "red-500"
+                      } flex h-4 w-4 rounded-xl justify-center items-center`}
+                    >
+                      {item.completed ? "" : ""}
                     </div>
                   </div>
-                  <div>{item.text}</div>
-                  <div >{item.priority}</div>
-                  <div
-                      className="flex justify-center items-center"
-                  >
+                  <div className="whitespace-normal">{item.text}</div>
+
+                  <div>{item.priority}</div>
+                  <div className="flex justify-center items-center">
                     {/* Use an eye icon for the "View" action */}
-                    <GrView className="h-4 w-4 cursor-pointer"
-                    onClick={() => handleView(item)} />
+                    <GrView
+                      className="h-4 w-4 cursor-pointer"
+                      onClick={() => handleView(item)}
+                    />
                   </div>
-                  <div
-                    className="flex justify-center items-center"
-                  >
+                  <div className="flex justify-center items-center">
                     {/* Use a trash can icon for the "Delete" action */}
-                    <BiTrash className="h-4 w-4 cursor-pointer"
-                    onClick={() => handleDelete(item)} />
+                    <BiTrash
+                      className="h-4 w-4 cursor-pointer"
+                      onClick={() => handleDelete(item)}
+                    />
                   </div>
                 </div>
               );

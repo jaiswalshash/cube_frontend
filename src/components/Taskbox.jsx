@@ -13,7 +13,7 @@ function Taskbox({ data }) {
 
   return (
     <div
-      className="block lg:w-[25%] w-full h-[8rem] mb-16 lg:mb-0 bg-white p-6 rounded-lg shadow-lg text-black
+      className="block lg:w-[25%] w-full h-[7rem] mb-10 lg:mb-0 bg-white p-4 lg:p-6 rounded-lg shadow-lg text-black
    dark:text-white bg-opacity-40 backdrop-filter backdrop-blur-18 border border-opacity-20 border-none relative"
     >
       <div className="flex items-center justify-between">
@@ -25,7 +25,7 @@ function Taskbox({ data }) {
         </div>
       </div>
 
-      <div className="h-2 bg-gray-300 mt-2 rounded-full">
+      <div className="h-2 bg-gray-300 mt-8 rounded-full">
         <div
           style={{ width: `${completionPercentage}%` }}
           className="h-full bg-purple-400 rounded-full"

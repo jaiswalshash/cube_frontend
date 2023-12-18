@@ -4,14 +4,18 @@ import "./modal.css";
 
 function AddNewModal({ open, toggle, addNew, updatedData }) {
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [task, setTask] = useState(null);
+  const [task, setTask] = useState('');
   const [description, setDescription] = useState(null);
   const [priority, setPriority] = useState("medium"); // default priority is set to "low"
+  const limit = 30;
   const handleOk = () => {
-    // Perform any action you need with the task, description, and priority
-    console.log("Task:", task);
-    console.log("Description:", description);
-    console.log("Priority:", priority);
+    
+    if (!task) {
+      // You can handle the case where the task is not provided, e.g., show an error message
+      alert("Task is mandatory. Please provide a task.");
+      return;
+    }
+    
     const newData = {
       text:task, description, priority
     }
@@ -44,11 +48,11 @@ function AddNewModal({ open, toggle, addNew, updatedData }) {
         onCancel={handleCancel}
       >
         <div>
-          <label>Task:</label>
-          <Input value={task} onChange={(e) => setTask(e.target.value)} />
+        <label>Task:({task.length}/{limit})</label>
+          <Input value={task} onChange={(e) => setTask(e.target.value)} maxLength={limit} />
         </div>
         <div style={{ marginTop: "1rem" }}>
-          <label>Description:</label>
+        <label>Description:<span className="opacity-50">(Optional)</span></label>
           <Input.TextArea
             value={description}
             onChange={(e) => setDescription(e.target.value)}

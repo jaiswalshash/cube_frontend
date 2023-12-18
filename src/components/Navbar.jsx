@@ -17,7 +17,7 @@ function Navbar() {
     } else {
       document.documentElement.classList.remove("dark");
     }
-    if (isLoggedIn) setAuth(true);
+    if (isLoggedIn()) setAuth(true); // Call isLoggedIn as a function
   }, [theme]);
 
   const toggleDarkMode = () => {
@@ -42,7 +42,7 @@ function Navbar() {
       </div>
 
       <div
-        onClick={toggleDarkMode}
+        
         className="flex items-center justify-between gap-5"
       >
         <div>
@@ -51,9 +51,9 @@ function Navbar() {
           }
         </div>
         {theme === "light" ? (
-          <FaSun className="text-yellow-400 text-2xl cursor-pointer" />
+          <FaSun onClick={toggleDarkMode} className="text-yellow-400 text-2xl cursor-pointer" />
         ) : (
-          <FaMoon className="text-black text-2xl cursor-pointer" />
+          <FaMoon onClick={toggleDarkMode} className="text-black text-2xl cursor-pointer" />
         )}
       </div>
     </div>
