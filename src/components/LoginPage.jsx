@@ -51,7 +51,7 @@ const LoginPage = ({ isLogin }) => {
         Welcome to Catalyst!
       </h2>
       <form>
-        <label className="block mb-2 text-gray-600">E-mail:</label>
+        <label className="block mb-2 dark:text-gray-200 text-gray-600">E-mail:</label>
         <input
           type="email"
           // value={email}
@@ -60,7 +60,7 @@ const LoginPage = ({ isLogin }) => {
           className="w-full p-2 border border-gray-300 rounded focus:outline-none text-black focus:shadow-outline focus:border-pink-400"
         />
         <br />
-        <label className="block mt-4 mb-2 text-gray-600">Password:</label>
+        <label className="block mt-4 mb-2 dark:text-gray-200 text-gray-600">Password:</label>
         <input
           type="password"
           // value={password}

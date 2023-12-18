@@ -70,38 +70,38 @@ const SignUp = ({ isLogin }) => {
         Welcome to Catalyst!
       </h2>
       <form>
-        <label className="block mb-2 text-gray-600">Name:</label>
+        <label className="block mb-2 dark:text-gray-200 text-gray-600">Name:</label>
         <input
           type="name"
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Enter your Name"
-          className="w-full p-2 border text-black dark:text-white border-gray-300 rounded focus:outline-none focus:shadow-outline focus:border-pink-400"
+          className="w-full p-2 border text-black  border-gray-300 rounded focus:outline-none focus:shadow-outline focus:border-pink-400"
         />
-        <label className="block mt-4 mb-2 text-gray-600">E-mail:</label>
+        <label className="block mt-4 mb-2 dark:text-gray-200 text-gray-600">E-mail:</label>
         <input
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Enter your E-mail"
-          className="w-full p-2 text-black dark:text-white border border-gray-300 rounded focus:outline-none focus:shadow-outline focus:border-pink-400"
+          className="w-full p-2 text-black border border-gray-300 rounded focus:outline-none focus:shadow-outline focus:border-pink-400"
         />
         <br />
-        <label className="block mt-4 mb-2 text-gray-600">Enter Password:</label>
+        <label className="block mt-4 mb-2 dark:text-gray-200 text-gray-600">Enter Password:</label>
         <input
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Enter your password"
-          className="w-full p-2 border text-black dark:text-white border-gray-300 rounded focus:outline-none focus:shadow-outline focus:border-pink-400"
+          className="w-full p-2 border text-black  border-gray-300 rounded focus:outline-none focus:shadow-outline focus:border-pink-400"
         />
-        <label className="block mt-4 mb-2 text-gray-600">Confirm Password:</label>
+        <label className="block mt-4 mb-2 dark:text-gray-200 text-gray-600">Confirm Password:</label>
         <input
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           placeholder="Confirm your password"
-          className="w-full p-2 border text-black dark:text-white border-gray-300 rounded focus:outline-none focus:shadow-outline focus:border-pink-400"
+          className="w-full p-2 border text-black  border-gray-300 rounded focus:outline-none focus:shadow-outline focus:border-pink-400"
         />
         <br />
         <div className="w-full mt-6 flex justify-between items-start">

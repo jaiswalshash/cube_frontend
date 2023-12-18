@@ -34,6 +34,7 @@ function App() {
         <Route path="/" element={<Homepage onLogin={handleLogin} />} />
         <Route exact path="/login" element={<Homepage onLogin={handleLogin} />} />
         <Route path="/app" element={<PrivateRoute><TodoPage user={user} onLogout={handleLogout} /> </PrivateRoute>} />
+        <Route path="*" element={<Homepage/>} />
       </Routes>
     </Router>
     </div>
